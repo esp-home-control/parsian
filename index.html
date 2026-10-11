@@ -1,1219 +1,351 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl" class="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>پارسیان - خانه هوشمند نسل جدید</title>
-    <meta name="description" content="پیشرو در زمینه هوشمندسازی خانه و ساختمان با جدیدترین تکنولوژی‌های دنیا">
-    
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        html {
-            scroll-behavior: smooth;
-            direction: rtl;
-        }
-        
-        body {
-            font-family: 'Inter', 'Vazirmatn', 'Segoe UI', 'Tahoma', sans-serif;
-            font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
-            background: #0c0c0c;
-            color: #f5f5f5;
-            overflow-x: hidden;
-        }
-        
-        /* Beautiful Scrollbar */
-        ::-webkit-scrollbar {
-            width: 12px;
-            height: 12px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: rgba(15, 15, 25, 0.95);
-            border-radius: 10px;
-            margin: 4px;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(
-                180deg,
-                rgba(34, 197, 94, 0.9) 0%,
-                rgba(16, 185, 129, 0.9) 25%,
-                rgba(6, 182, 212, 0.9) 50%,
-                rgba(14, 165, 233, 0.9) 75%,
-                rgba(59, 130, 246, 0.9) 100%
-            );
-            background-size: 100% 300%;
-            border-radius: 10px;
-            border: 2px solid rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-            animation: scrollGradientFlow 8s ease infinite;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(
-                180deg,
-                rgba(34, 197, 94, 1) 0%,
-                rgba(16, 185, 129, 1) 25%,
-                rgba(6, 182, 212, 1) 50%,
-                rgba(14, 165, 233, 1) 75%,
-                rgba(59, 130, 246, 1) 100%
-            );
-            background-size: 100% 300%;
-            animation: scrollGradientFlow 4s ease infinite;
-            box-shadow: 
-                0 0 15px rgba(34, 197, 94, 0.5),
-                0 0 30px rgba(6, 182, 212, 0.3);
-            border-color: rgba(34, 197, 94, 0.5);
-        }
-        
-        @keyframes scrollGradientFlow {
-            0% { background-position: 0% 0%; }
-            50% { background-position: 0% 100%; }
-            100% { background-position: 0% 0%; }
-        }
-        
-        /* Animated gradient background */
-        .gradient-bg-dark {
-            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
-            background-size: 400% 400%;
-            animation: gradientShift 25s ease infinite;
-        }
-        
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        /* Mouse follower gradient */
-        #mouseFollower {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 0;
-            transition: background 0.15s ease-out;
-        }
-        
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes scaleIn {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-        
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.5); opacity: 0; }
-        }
-        
-        @keyframes heartBeat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-        }
-        
-        .animate-fadeInUp {
-            animation: fadeInUp 0.6s ease-out;
-        }
-        
-        .animate-fadeInDown {
-            animation: fadeInDown 0.6s ease-out;
-        }
-        
-        .animate-scaleIn {
-            animation: scaleIn 0.5s ease-out;
-        }
-        
-        .animate-slideInRight {
-            animation: slideInRight 0.6s ease-out;
-        }
-        
-        .animate-slideInLeft {
-            animation: slideInLeft 0.6s ease-out;
-        }
-        
-        /* Hover effects */
-        .hover-lift {
-            transition: all 0.3s ease;
-        }
-        
-        .hover-lift:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(34, 197, 94, 0.2);
-        }
-        
-        .hover-scale:hover {
-            transform: scale(1.05);
-        }
-        
-        .hover-rotate:hover {
-            transform: rotate(360deg);
-        }
-        
-        /* Glass effect */
-        .glass {
-            background: rgba(31, 41, 55, 0.5);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        /* Chat box animations */
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px) scale(0.8);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-        
-        .chat-box-content {
-            animation: slideUp 0.3s ease-out;
-        }
-        
-        /* Delayed animations */
-        .delay-100 { animation-delay: 0.1s; }
-        .delay-200 { animation-delay: 0.2s; }
-        .delay-300 { animation-delay: 0.3s; }
-        .delay-400 { animation-delay: 0.4s; }
-        .delay-500 { animation-delay: 0.5s; }
-        .delay-600 { animation-delay: 0.6s; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07110f">
+  <meta name="description" content="پارسیان؛ تجربه‌ای مدرن از خانه هوشمند، کنترل روشنایی، امنیت و سناریوهای زندگی.">
+  <title>پارسیان | خانه هوشمند، ساده‌تر از همیشه</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#07110f;--panel:#0d1b18;--panel2:#10231f;--text:#effaf6;--muted:#9ab3aa;--line:rgba(190,255,229,.12);--green:#4df0b5;--cyan:#6ce8f2;--shadow:0 24px 80px rgba(0,0,0,.28)}
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;scroll-padding-top:90px}
+    body{font-family:"Vazirmatn",Tahoma,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.8}
+    body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-2;background:radial-gradient(ellipse at 15% 5%,rgba(28,180,127,.13),transparent 35%),radial-gradient(ellipse at 90% 35%,rgba(43,150,180,.12),transparent 34%),linear-gradient(180deg,#07110f,#091512 48%,#07100f)}
+    a{color:inherit;text-decoration:none}button,input,textarea{font:inherit}button{cursor:pointer}
+    .container{width:min(1160px,calc(100% - 40px));margin:auto}
+    .topline{height:3px;background:linear-gradient(90deg,transparent,var(--green),var(--cyan),transparent)}
+    .nav-wrap{position:sticky;top:0;z-index:50;background:rgba(7,17,15,.78);backdrop-filter:blur(20px);border-bottom:1px solid var(--line)}
+    nav{height:78px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:900;font-size:1.2rem;white-space:nowrap}
+    .brand-mark{width:42px;height:42px;display:grid;place-items:center;border-radius:14px;background:linear-gradient(135deg,var(--green),var(--cyan));color:#06221a;box-shadow:0 8px 28px #4df0b52b}
+    .brand-mark svg{width:25px;height:25px}
+    .nav-links{display:flex;align-items:center;gap:27px;color:#b7cbc3;font-size:.92rem}
+    .nav-links a{transition:.2s}.nav-links a:hover{color:var(--green)}
+    .nav-actions{display:flex;align-items:center;gap:10px}
+    .btn{border:1px solid transparent;border-radius:14px;padding:12px 19px;display:inline-flex;align-items:center;justify-content:center;gap:9px;font-weight:700;transition:transform .2s,background .2s,border .2s;white-space:nowrap}
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{color:#052219;background:linear-gradient(110deg,var(--green),#8bf4dc);box-shadow:0 9px 30px #4df0b51c}
+    .btn-ghost{color:var(--text);border-color:var(--line);background:rgba(255,255,255,.025)}
+    .btn-ghost:hover{border-color:#4df0b56b;background:#4df0b50d}
+    .menu-toggle{display:none;width:44px;height:44px;border:1px solid var(--line);border-radius:12px;color:white;background:var(--panel)}
+    .hero{padding:76px 0 65px;min-height:650px;display:flex;align-items:center}
+    .hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:52px;align-items:center}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;padding:7px 13px;border:1px solid #4df0b52b;border-radius:999px;color:var(--green);background:#4df0b50b;font-size:.82rem;font-weight:600}
+    .status-dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 5px #4df0b51c}
+    h1{font-size:clamp(2.5rem,5vw,4.5rem);line-height:1.25;letter-spacing:-1.8px;margin:23px 0 20px;font-weight:900}
+    .gradient-text{background:linear-gradient(90deg,var(--green),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .hero-copy{font-size:1.08rem;color:var(--muted);max-width:570px;line-height:2.1}
+    .hero-buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:29px}
+    .trust-row{display:flex;align-items:center;gap:14px;margin-top:31px;color:var(--muted);font-size:.85rem}
+    .avatars{display:flex;direction:ltr}.avatar{width:32px;height:32px;border-radius:50%;border:2px solid var(--bg);margin-left:-8px;display:grid;place-items:center;background:#163a30;color:var(--green);font-size:.68rem;font-weight:800}.avatar:nth-child(2){background:#21454a;color:#9ff4ed}.avatar:nth-child(3){background:#443d2a;color:#ffe4a3}
+    .hero-visual{position:relative;min-height:500px;display:grid;place-items:center}
+    .orb{position:absolute;width:390px;height:390px;border-radius:50%;background:radial-gradient(circle,#30e9ac18 0%,#30e9ac05 48%,transparent 70%);filter:blur(4px)}
+    .dashboard{position:relative;width:min(100%,470px);padding:22px;border-radius:28px;border:1px solid #c4ffec20;background:linear-gradient(145deg,#132822eF,#0b1715f2);box-shadow:var(--shadow);transform:rotate(-1deg)}
+    .dash-head{display:flex;justify-content:space-between;align-items:center;gap:10px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+    .dash-head strong{font-size:1rem}.dash-head small{display:block;color:var(--muted);font-size:.75rem}
+    .online{font-size:.73rem;color:var(--green);background:#4df0b512;border:1px solid #4df0b52b;padding:5px 10px;border-radius:999px}
+    .home-scene{margin:18px 0;border-radius:19px;min-height:170px;position:relative;overflow:hidden;background:linear-gradient(180deg,#152d35,#1b342c 56%,#0e211c)}
+    .home-scene:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,#07120f),radial-gradient(ellipse at 50% 0%,#b5f8db24,transparent 50%)}
+    .window{position:absolute;top:20px;left:25px;width:115px;height:90px;border:5px solid #8eb6a64d;border-radius:8px;background:linear-gradient(145deg,#7de9e82c,#152e32);box-shadow:0 0 35px #61f0c91a}
+    .window:after{content:"";position:absolute;left:50%;top:0;bottom:0;width:3px;background:#8eb6a64d}.window:before{content:"";position:absolute;top:50%;left:0;right:0;height:3px;background:#8eb6a64d}
+    .sofa{position:absolute;bottom:20px;right:28px;width:170px;height:54px;border-radius:13px 13px 8px 8px;background:#284f42;border-bottom:8px solid #1a3a30;box-shadow:0 15px 25px #0003}
+    .sofa:before,.sofa:after{content:"";position:absolute;top:-19px;width:80px;height:34px;border-radius:10px;background:#356655}.sofa:before{right:5px}.sofa:after{left:5px}
+    .plant{position:absolute;bottom:20px;left:48px;width:5px;height:45px;background:#4c8064}.plant:before{content:"";position:absolute;left:-15px;top:-14px;width:35px;height:34px;border-radius:100% 0 100% 0;background:#3a9b70;transform:rotate(-25deg)}
+    .scene-label{position:absolute;bottom:10px;right:15px;font-size:.74rem;color:#d8f7e9}
+    .dash-section-title{display:flex;justify-content:space-between;align-items:center;margin:19px 0 12px;font-size:.85rem}
+    .dash-section-title span{color:var(--muted);font-size:.73rem}
+    .device-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+    .device{display:flex;align-items:center;gap:11px;padding:13px;border-radius:15px;background:#ffffff05;border:1px solid var(--line);transition:.2s}
+    .device:hover{border-color:#4df0b55c}.device-icon{width:39px;height:39px;display:grid;place-items:center;border-radius:12px;background:#4df0b512;color:var(--green);flex-shrink:0}.device-icon svg{width:21px;height:21px}
+    .device strong{font-size:.78rem;display:block}.device small{font-size:.68rem;color:var(--muted)}
+    .switch{margin-right:auto;width:35px;height:20px;border:0;border-radius:99px;background:#40534c;padding:3px;flex-shrink:0;transition:.2s}
+    .switch:after{content:"";display:block;width:14px;height:14px;background:#b7c7c0;border-radius:50%;transition:.2s}
+    .switch.on{background:var(--green)}.switch.on:after{transform:translateX(-15px);background:#063125}
+    .floating-chip{position:absolute;display:flex;align-items:center;gap:10px;padding:12px 15px;border:1px solid var(--line);background:#10231feF;border-radius:16px;box-shadow:var(--shadow);font-size:.78rem}
+    .floating-chip b{display:block;font-size:.86rem}.floating-chip small{color:var(--muted)}
+    .chip-one{top:53px;right:-15px}.chip-two{bottom:48px;left:-14px}
+    .mini-icon{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;color:var(--green);background:#4df0b515}
+    .section{padding:88px 0}.section-alt{background:linear-gradient(180deg,#0b1915aa,#0b191577);border-top:1px solid #ffffff05;border-bottom:1px solid #ffffff05}
+    .section-head{text-align:center;max-width:700px;margin:0 auto 44px}
+    .section-kicker{color:var(--green);font-size:.8rem;font-weight:800;letter-spacing:.2px}
+    h2{font-size:clamp(1.8rem,3.4vw,2.75rem);line-height:1.4;margin:10px 0 13px;font-weight:900}
+    .section-head p,.muted{color:var(--muted)}
+    .feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}
+    .feature-card{padding:26px;border-radius:22px;border:1px solid var(--line);background:linear-gradient(145deg,#ffffff07,#ffffff02);transition:.25s}
+    .feature-card:hover{transform:translateY(-5px);border-color:#4df0b54a;background:#4df0b508}
+    .feature-icon{width:51px;height:51px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(135deg,#4df0b51c,#6ce8f21a);color:var(--green);margin-bottom:20px}
+    .feature-icon svg{width:25px;height:25px}.feature-card h3{font-size:1.08rem;margin-bottom:8px}.feature-card p{font-size:.9rem;color:var(--muted);line-height:2}
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:55px;align-items:center}
+    .check-list{display:grid;gap:16px;margin:25px 0}.check-item{display:flex;gap:12px;align-items:flex-start;color:#c4d8d0}.check{flex-shrink:0;width:25px;height:25px;display:grid;place-items:center;border-radius:8px;color:var(--green);background:#4df0b515;font-weight:900}
+    .scene-panel{padding:25px;border:1px solid var(--line);border-radius:26px;background:linear-gradient(145deg,#10231f,#0b1714);box-shadow:var(--shadow)}
+    .scene-card{display:flex;align-items:center;gap:15px;padding:17px;border-radius:17px;background:#ffffff04;border:1px solid var(--line);margin-top:12px}
+    .scene-emoji{width:49px;height:49px;display:grid;place-items:center;border-radius:15px;background:#4df0b512;font-size:1.4rem}
+    .scene-card h3{font-size:.95rem}.scene-card p{color:var(--muted);font-size:.78rem}.scene-card .btn{margin-right:auto;padding:8px 12px;font-size:.75rem}
+    .protocol-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+    .protocol{border:1px solid var(--line);border-radius:18px;padding:22px;text-align:center;background:#ffffff04}
+    .protocol .proto-mark{font-size:1.3rem;font-weight:900;color:var(--green);margin-bottom:7px}.protocol p{font-size:.8rem;color:var(--muted)}
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:30px}
+    .stat{padding:20px;text-align:center;border:1px solid var(--line);border-radius:18px;background:#ffffff04}.stat strong{display:block;font-size:1.8rem;color:var(--green)}.stat span{font-size:.82rem;color:var(--muted)}
+    .contact-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:35px;align-items:start}
+    .contact-info{padding:30px;border:1px solid var(--line);border-radius:24px;background:linear-gradient(145deg,#10231f,#0b1714)}
+    .contact-info h3{font-size:1.35rem;margin-bottom:10px}.contact-info p{color:var(--muted);font-size:.9rem}
+    .contact-line{display:flex;gap:13px;align-items:center;margin-top:22px}.contact-line .mini-icon{width:42px;height:42px}.contact-line small{display:block;color:var(--muted)}
+    form{padding:30px;border:1px solid var(--line);border-radius:24px;background:#ffffff03}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    label{display:block;font-size:.84rem;color:#d2e2dc;margin-bottom:7px}
+    .field{margin-bottom:16px}
+    input,textarea{width:100%;padding:13px 15px;border-radius:13px;border:1px solid var(--line);background:#07120f;color:var(--text);outline:none;transition:.2s}
+    input:focus,textarea:focus{border-color:#4df0b58a;box-shadow:0 0 0 3px #4df0b510}textarea{resize:vertical;min-height:130px}
+    .form-note{font-size:.75rem;color:var(--muted);margin-top:12px}
+    .faq-list{max-width:800px;margin:auto}.faq{border-bottom:1px solid var(--line)}.faq button{width:100%;display:flex;justify-content:space-between;gap:15px;text-align:right;padding:20px 2px;border:0;background:none;color:var(--text);font-weight:700}.faq button span:last-child{color:var(--green);font-size:1.2rem}.faq-answer{display:none;padding:0 2px 20px;color:var(--muted);font-size:.9rem}.faq.open .faq-answer{display:block}
+    footer{padding:32px 0;border-top:1px solid var(--line);background:#050c0a}.footer-inner{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}.footer-links{display:flex;gap:18px;color:var(--muted);font-size:.83rem}.copyright{font-size:.8rem;color:var(--muted)}
+    .toast{position:fixed;bottom:25px;right:25px;z-index:100;max-width:calc(100% - 50px);padding:13px 18px;background:#123b2e;border:1px solid #4df0b55c;border-radius:14px;color:#e8fff5;box-shadow:var(--shadow);opacity:0;transform:translateY(12px);pointer-events:none;transition:.25s}.toast.show{opacity:1;transform:translateY(0)}
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:translateY(0)}
+    @media(max-width:900px){.nav-links{gap:15px}.hero-grid{grid-template-columns:1fr;gap:25px}.hero{padding-top:55px}.hero-copy{max-width:700px}.hero-visual{min-height:480px}.dashboard{max-width:500px}.split{gap:30px}.feature-grid{grid-template-columns:repeat(2,1fr)}.protocol-grid{grid-template-columns:repeat(2,1fr)}.contact-grid{grid-template-columns:1fr 1.2fr}}
+    @media(max-width:680px){.container{width:min(100% - 28px,1160px)}nav{height:68px}.nav-links{display:none;position:absolute;top:68px;right:0;left:0;padding:18px 22px 22px;background:#091612;border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;gap:4px}.nav-links.open{display:flex}.nav-links a{padding:10px}.nav-actions .btn{display:none}.menu-toggle{display:block}.brand{font-size:1.05rem}.brand-mark{width:38px;height:38px}.hero{padding:45px 0 35px;min-height:auto}.hero-grid{gap:12px}h1{font-size:2.45rem;letter-spacing:-.8px}.hero-copy{font-size:.98rem}.hero-buttons .btn{width:100%}.trust-row{font-size:.76rem}.hero-visual{min-height:420px;margin:0 -4px}.dashboard{padding:15px;border-radius:23px}.floating-chip{padding:9px 11px;font-size:.68rem}.chip-one{right:0;top:12px}.chip-two{left:0;bottom:15px}.home-scene{min-height:145px}.section{padding:65px 0}.section-head{margin-bottom:30px}.feature-grid{grid-template-columns:1fr}.feature-card{padding:23px}.split,.contact-grid{grid-template-columns:1fr}.split{gap:25px}.protocol-grid{grid-template-columns:repeat(2,1fr);gap:10px}.protocol{padding:17px 10px}.stats{grid-template-columns:repeat(2,1fr)}.form-row{grid-template-columns:1fr;gap:0}form,.contact-info{padding:22px}.scene-card{gap:10px;padding:12px}.scene-card .btn{padding:7px 9px}.footer-inner{align-items:flex-start;flex-direction:column}.footer-links{flex-wrap:wrap}.device{padding:10px;gap:8px}.device-icon{width:34px;height:34px}.device strong{font-size:.72rem}.device small{font-size:.63rem}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+  </style>
 </head>
-<body class="gradient-bg-dark min-h-screen overflow-x-hidden">
-    <!-- Mouse Follower -->
-    <div id="mouseFollower"></div>
-    
-    <div class="relative z-10">
-        <!-- Navbar -->
-        <nav class="fixed top-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-xl border-b border-white/10 animate-fadeInDown">
-            <div class="container mx-auto px-4">
-                <div class="flex items-center justify-between h-16">
-                    <!-- Logo -->
-                    <div class="flex items-center gap-3 hover-scale transition-all duration-300">
-    <img src="nwl.png" alt="nwl logo" class="w-6 h-6">
-</div>
-                        </div>
-                        <span class="text-xl font-bold text-white">پارسیان</span>
-                    </div>
+<body>
+  <div class="topline"></div>
+  <div class="nav-wrap">
+    <nav class="container">
+      <a class="brand" href="#home" aria-label="پارسیان، صفحه اصلی">
+        <span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10.5 12 3l9 7.5V21h-6v-6H9v6H3z"/><path d="M8 9h8"/></svg></span>
+        <span>پارسیان<span class="gradient-text">.</span></span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="#home">خانه</a><a href="#features">امکانات</a><a href="#scenes">سناریوها</a><a href="#protocols">سازگاری</a><a href="#faq">سؤالات متداول</a>
+      </div>
+      <div class="nav-actions">
+        <a class="btn btn-primary" href="#contact">مشاوره رایگان <span>←</span></a>
+        <button class="menu-toggle" id="menuToggle" aria-label="باز کردن منو" aria-expanded="false"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      </div>
+    </nav>
+  </div>
 
-                    <!-- Desktop Menu -->
-                    <div class="hidden md:flex items-center gap-8">
-                        <a href="#home" class="text-gray-300 hover:text-emerald-400 transition-colors hover-scale">خانه</a>
-                        <a href="#features" class="text-gray-300 hover:text-emerald-400 transition-colors hover-scale">امکانات</a>
-                        <a href="#mobile-app" class="text-gray-300 hover:text-emerald-400 transition-colors hover-scale">اپلیکیشن</a>
-                        <a href="#protocols" class="text-gray-300 hover:text-emerald-400 transition-colors hover-scale">پروتکل‌ها</a>
-                        <a href="#contact" class="text-gray-300 hover:text-emerald-400 transition-colors hover-scale">تماس</a>
-                    </div>
-
-                    <!-- Mobile Menu Button -->
-                    <button id="mobileMenuBtn" class="md:hidden text-white p-2">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                        </svg>
-                    </button>
-                </div>
-
-                <!-- Mobile Menu -->
-                <div id="mobileMenu" class="hidden md:hidden py-4 border-t border-white/10">
-                    <div class="flex flex-col gap-3">
-                        <a href="#home" class="py-2 text-gray-300 hover:text-emerald-400 transition-colors">خانه</a>
-                        <a href="#features" class="py-2 text-gray-300 hover:text-emerald-400 transition-colors">امکانات</a>
-                        <a href="#mobile-app" class="py-2 text-gray-300 hover:text-emerald-400 transition-colors">اپلیکیشن</a>
-                        <a href="#protocols" class="py-2 text-gray-300 hover:text-emerald-400 transition-colors">پروتکل‌ها</a>
-                        <a href="#contact" class="py-2 text-gray-300 hover:text-emerald-400 transition-colors">تماس</a>
-                    </div>
-                </div>
-            </div>
-        </nav>
-
-        <!-- Hero Section -->
-        <section id="home" class="min-h-screen flex items-center justify-center pt-16">
-            <div class="container mx-auto px-4 py-20">
-                <div class="text-center max-w-4xl mx-auto">
-                    <div class="mb-8 animate-fadeInUp">
-                        <div class="inline-flex items-center gap-2 bg-emerald-500/10 text-emerald-400 px-4 py-2 rounded-full mb-6">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                            </svg>
-                            <span class="text-sm">جدیدترین تکنولوژی هوشمندسازی</span>
-                        </div>
-                    </div>
-
-                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight animate-fadeInUp delay-100">
-                        <span class="bg-gradient-to-l from-emerald-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent">
-                            آینده خانه هوشمند
-                        </span>
-                        <br />
-                        <span class="text-white">در دستان شما</span>
-                    </h1>
-
-                    <p class="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto animate-fadeInUp delay-200">
-                        با پارسیان، خانه خود را به یک مرکز هوشمند تبدیل کنید. کنترل همه چیز با یک کلیک، از هر جای دنیا.
-                    </p>
-
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12 animate-fadeInUp delay-300">
-                        <button onclick="scrollToContact()" class="bg-gradient-to-r from-emerald-600 to-cyan-600 hover:from-emerald-700 hover:to-cyan-700 text-white px-8 py-4 rounded-xl font-medium hover-lift transition-all">
-                            شروع کنید
-                            <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-                            </svg>
-                        </button>
-                        
-                        <button onclick="scrollToMobileApp()" class="border-2 border-gray-700 text-gray-300 hover:border-emerald-500 hover:text-emerald-400 px-8 py-4 rounded-xl font-medium transition-all">
-                            اپلیکیشن موبایل
-                        </button>
-                    </div>
-
-                    <!-- Stats -->
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
-                        <div class="text-center animate-scaleIn delay-400 hover-lift">
-                            <div class="w-16 h-16 bg-gradient-to-br from-emerald-400 to-cyan-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
-                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-                                </svg>
-                            </div>
-                            <h3 class="font-bold text-2xl mb-2 text-white">100%</h3>
-                            <p class="text-gray-300">امنیت داده‌ها</p>
-                        </div>
-                        
-                        <div class="text-center animate-scaleIn delay-500 hover-lift">
-                            <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
-                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"/>
-                                </svg>
-                            </div>
-                            <h3 class="font-bold text-2xl mb-2 text-white">24/7</h3>
-                            <p class="text-gray-300">دسترسی آنلاین</p>
-                        </div>
-                        
-                        <div class="text-center animate-scaleIn delay-600 hover-lift">
-                            <div class="w-16 h-16 bg-gradient-to-br from-cyan-400 to-teal-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
-                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                                </svg>
-                            </div>
-                            <h3 class="font-bold text-2xl mb-2 text-white">50%</h3>
-                            <p class="text-gray-300">صرفه‌جویی انرژی</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Features Section -->
-        <section id="features" class="py-20 bg-gray-900/20">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-16">
-                    <div class="inline-flex items-center gap-2 bg-cyan-500/10 text-cyan-400 px-4 py-2 rounded-full mb-6">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                        </svg>
-                        <span class="text-sm">امکانات پیشرفته</span>
-                    </div>
-                    
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">
-                        همه چیز در یک نگاه
-                    </h2>
-                    <p class="text-lg text-gray-300 max-w-2xl mx-auto">
-                        پارسیان تمام ابزارهای مورد نیاز برای هوشمندسازی خانه شما را فراهم می‌کند
-                    </p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Feature 1 -->
-                    <div class="glass p-6 rounded-2xl hover-lift">
-                        <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg transition-transform duration-300 hover-rotate">
-                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-3">کنترل هوشمند</h3>
-                        <p class="text-gray-300 leading-relaxed">
-                            دسترسی مستقیم به کنترل پنل برای مدیریت دستگاه‌های هوشمند
-                        </p>
-                    </div>
-                    
-                    <!-- Feature 2 -->
-                    <div class="glass p-6 rounded-2xl hover-lift">
-                        <div class="w-14 h-14 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg transition-transform duration-300 hover-rotate">
-                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-3">اپلیکیشن موبایل</h3>
-                        <p class="text-gray-300 leading-relaxed">
-                            نرم‌افزار موبایل برای کنترل راحت و سریع از هر مکان
-                        </p>
-                    </div>
-                    
-                    <!-- Feature 3 -->
-                    <div class="glass p-6 rounded-2xl hover-lift">
-                        <div class="w-14 h-14 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg transition-transform duration-300 hover-rotate">
-                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-3">تنظیمات پیشرفته</h3>
-                        <p class="text-gray-300 leading-relaxed">
-                            امکان تنظیمات دقیق و شخصی‌سازی کامل سیستم
-                        </p>
-                    </div>
-                    
-                    <!-- Feature 4 -->
-                    <div class="glass p-6 rounded-2xl hover-lift">
-                        <div class="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg transition-transform duration-300 hover-rotate">
-                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"/>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-3">اتصال بی‌سیم</h3>
-                        <p class="text-gray-300 leading-relaxed">
-                            پشتیبانی از انواع پروتکل‌های ارتباطی مدرن
-                        </p>
-                    </div>
-                    
-                    <!-- Feature 5 -->
-                    <div class="glass p-6 rounded-2xl hover-lift">
-                        <div class="w-14 h-14 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg transition-transform duration-300 hover-rotate">
-                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-3">امنیت بالا</h3>
-                        <p class="text-gray-300 leading-relaxed">
-                            رمزگذاری پیشرفته و حفاظت از اطلاعات شخصی
-                        </p>
-                    </div>
-                    
-                    <!-- Feature 6 -->
-                    <div class="glass p-6 rounded-2xl hover-lift">
-                        <div class="w-14 h-14 bg-gradient-to-br from-teal-500 to-blue-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg transition-transform duration-300 hover-rotate">
-                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-3">ذخیره ابری</h3>
-                        <p class="text-gray-300 leading-relaxed">
-                            پشتیبان‌گیری خودکار و دسترسی از همه جا
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Mobile App Section -->
-        <section id="mobile-app" class="py-20 bg-gradient-to-br from-gray-900/50 to-gray-800/30">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-16">
-                    <div class="inline-flex items-center gap-2 bg-purple-500/10 text-purple-400 px-4 py-2 rounded-full mb-6">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
-                        </svg>
-                        <span class="text-sm">اپلیکیشن موبایل</span>
-                    </div>
-                    
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">
-                        کنترل خانه در جیب شما
-                    </h2>
-                    <p class="text-lg text-gray-300 max-w-2xl mx-auto">
-                        اپلیکیشن پارسیان با رابط کاربری ساده و قدرتمند، کنترل کامل خانه هوشمندتان را در اختیار شما قرار می‌دهد
-                    </p>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    <!-- App Features -->
-                    <div class="space-y-8 animate-slideInLeft">
-                        <div class="glass p-6 rounded-2xl hover-lift">
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center shadow-lg transition-transform duration-300 hover-rotate">
-                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h3 class="font-bold text-xl mb-2 text-white">امنیت بالا</h3>
-                                    <p class="text-gray-300 leading-relaxed">
-                                        احراز هویت دو مرحله‌ای و رمزگذاری پیشرفته برای حفاظت از اطلاعات شما
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="glass p-6 rounded-2xl hover-lift">
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-lg transition-transform duration-300 hover-rotate">
-                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h3 class="font-bold text-xl mb-2 text-white">کنترل سریع</h3>
-                                    <p class="text-gray-300 leading-relaxed">
-                                        دسترسی فوری به دستگاه‌ها با ویجت‌های اختصاصی و دستورات صوتی
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="glass p-6 rounded-2xl hover-lift">
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center shadow-lg transition-transform duration-300 hover-rotate">
-                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h3 class="font-bold text-xl mb-2 text-white">داشبورد شخصی</h3>
-                                    <p class="text-gray-300 leading-relaxed">
-                                        رابط کاربری قابل تنظیم با چیدمان دلخواه و تم‌های مختلف
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Download Buttons -->
-                        <div class="flex flex-col sm:flex-row gap-4 mt-8">
-                            <a href="https://play.google.comhttps://i.diawi.com/3htRwa/store/apps" target="_blank" class="flex-1 bg-gradient-to-r from-emerald-600 to-cyan-600 hover:from-emerald-700 hover:to-cyan-700 text-white px-6 py-4 rounded-xl font-medium hover-lift transition-all text-center">
-                                <div class="flex items-center justify-center gap-2">
-                                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.802 8.99l-2.492 2.49L5.864 2.658z"/>
-                                    </svg>
-                                    <span>دانلود از گوگل پلی</span>
-                                </div>
-                            </a>
-                            
-                            <a href="https://apps.apple.com/" target="_blank" class="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-4 rounded-xl font-medium hover-lift transition-all text-center">
-                                <div class="flex items-center justify-center gap-2">
-                                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-                                    </svg>
-                                    <span> (موقتا غیر فعال است)</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- App Preview -->
-                    <div class="relative animate-slideInRight">
-                        <div class="relative mx-auto max-w-md">
-                            <!-- Phone Frame -->
-                            <div class="relative bg-gray-800 rounded-[40px] p-4 shadow-2xl border border-gray-700">
-                                <!-- Notch -->
-                                <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-6 bg-gray-800 rounded-b-2xl z-10"></div>
-                                
-                                <!-- Screen -->
-                                <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-[32px] overflow-hidden border border-gray-700">
-                                    <!-- App Header -->
-                                    <div class="bg-gradient-to-r from-emerald-600 to-cyan-600 p-4 text-white">
-                                        <div class="flex items-center justify-between">
-                                            <div class="text-sm">خانه هوشمند</div>
-                                            <div class="text-xs">آنلاین</div>
-                                        </div>
-                                        <h3 class="text-lg font-bold mt-2">خوش آمدید!</h3>
-                                    </div>
-                                    
-                                    <!-- Devices Grid -->
-                                    <div class="p-4 grid grid-cols-2 gap-3">
-                                        <!-- Device 1 -->
-                                        <div class="bg-gray-800/50 rounded-xl p-3 text-center">
-                                            <div class="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center mx-auto mb-2">
-                                                <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-                                                </svg>
-                                            </div>
-                                            <span class="text-xs text-gray-300">امنیت</span>
-                                        </div>
-                                        
-                                        <!-- Device 2 -->
-                                        <div class="bg-gray-800/50 rounded-xl p-3 text-center">
-                                            <div class="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center mx-auto mb-2">
-                                                <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/>
-                                                </svg>
-                                            </div>
-                                            <span class="text-xs text-gray-300">آب و هوا</span>
-                                        </div>
-                                        
-                                        <!-- Device 3 -->
-                                        <div class="bg-gray-800/50 rounded-xl p-3 text-center">
-                                            <div class="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center mx-auto mb-2">
-                                                <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
-                                                </svg>
-                                            </div>
-                                            <span class="text-xs text-gray-300">روشنایی</span>
-                                        </div>
-                                        
-                                        <!-- Device 4 -->
-                                        <div class="bg-gray-800/50 rounded-xl p-3 text-center">
-                                            <div class="w-12 h-12 bg-cyan-500/20 rounded-xl flex items-center justify-center mx-auto mb-2">
-                                                <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                                                </svg>
-                                            </div>
-                                            <span class="text-xs text-gray-300">برنامه‌ریزی</span>
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- Quick Actions -->
-                                    <div class="p-4 border-t border-gray-700">
-                                        <h4 class="text-sm font-medium text-gray-300 mb-3">دسترسی سریع</h4>
-                                        <div class="flex justify-around">
-                                            <button class="text-center">
-                                                <div class="w-10 h-10 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-1">
-                                                    <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
-                                                    </svg>
-                                                </div>
-                                                <span class="text-xs text-gray-400">همه روشن</span>
-                                            </button>
-                                            
-                                            <button class="text-center">
-                                                <div class="w-10 h-10 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-1">
-                                                    <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
-                                                    </svg>
-                                                </div>
-                                                <span class="text-xs text-gray-400">حالت شب</span>
-                                            </button>
-                                            
-                                            <button class="text-center">
-                                                <div class="w-10 h-10 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-1">
-                                                    <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                                    </svg>
-                                                </div>
-                                                <span class="text-xs text-gray-400">تنظیمات</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Decorative Elements -->
-                            <div class="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-emerald-500/20 to-cyan-500/20 rounded-full blur-xl"></div>
-                            <div class="absolute -bottom-4 -left-4 w-32 h-32 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-full blur-xl"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Protocols Section -->
-        <section id="protocols" class="py-20">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-16">
-                    <div class="inline-flex items-center gap-2 bg-teal-500/10 text-teal-400 px-4 py-2 rounded-full mb-6">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
-                        </svg>
-                        <span class="text-sm">تکنولوژی‌های پشتیبانی</span>
-                    </div>
-                    
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">
-                        پروتکل‌های هوشمندسازی
-                    </h2>
-                    <p class="text-lg text-gray-300 max-w-2xl mx-auto">
-                        پارسیان از جدیدترین و محبوب‌ترین پروتکل‌های ارتباطی دنیا پشتیبانی می‌کند
-                    </p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-                    <!-- Protocol Cards -->
-                    <div class="glass p-6 rounded-2xl hover-lift">
-                        <div class="flex items-start gap-4 mb-4">
-                            <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-lg transition-transform duration-300 hover-rotate">
-                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-xl mb-2 text-white">MQTT</h3>
-                                <div class="flex flex-wrap gap-1 mb-3">
-                                    <span class="text-xs px-2 py-1 bg-gray-700/50 text-gray-300 rounded">کم‌مصرف</span>
-                                    <span class="text-xs px-2 py-1 bg-gray-700/50 text-gray-300 rounded">سریع</span>
-                                    <span class="text-xs px-2 py-1 bg-gray-700/50 text-gray-300 rounded">قابل اتکا</span>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="text-gray-300 leading-relaxed">
-                            پروتکل سبک و قدرتمند برای ارتباط دستگاه‌های IoT با کیفیت بالا
-                        </p>
-                    </div>
-
-                    <div class="glass p-6 rounded-2xl hover-lift">
-                        <div class="flex items-start gap-4 mb-4">
-                            <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-lg transition-transform duration-300 hover-rotate">
-                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-xl mb-2 text-white">HTTP/HTTPS</h3>
-                                <div class="flex flex-wrap gap-1 mb-3">
-                                    <span class="text-xs px-2 py-1 bg-gray-700/50 text-gray-300 rounded">امن</span>
-                                    <span class="text-xs px-2 py-1 bg-gray-700/50 text-gray-300 rounded">استاندارد</span>
-                                    <span class="text-xs px-2 py-1 bg-gray-700/50 text-gray-300 rounded">سازگار</span>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="text-gray-300 leading-relaxed">
-                            پروتکل استاندارد وب با امنیت SSL برای ارتباط امن با سرورها
-                        </p>
-                    </div>
-
-                    <div class="glass p-6 rounded-2xl hover-lift">
-                        <div class="flex items-start gap-4 mb-4">
-                            <div class="w-12 h-12 bg-gradient-to-br from-cyan-500 to-teal-600 rounded-xl flex items-center justify-center shadow-lg transition-transform duration-300 hover-rotate">
-                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-xl mb-2 text-white">WebSocket</h3>
-                                <div class="flex flex-wrap gap-1 mb-3">
-                                    <span class="text-xs px-2 py-1 bg-gray-700/50 text-gray-300 rounded">بلادرنگ</span>
-                                    <span class="text-xs px-2 py-1 bg-gray-700/50 text-gray-300 rounded">دوطرفه</span>
-                                    <span class="text-xs px-2 py-1 bg-gray-700/50 text-gray-300 rounded">سریع</span>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="text-gray-300 leading-relaxed">
-                            ارتباط دوطرفه و بلادرنگ برای کنترل زمان واقعی دستگاه‌ها
-                        </p>
-                    </div>
-
-                    <div class="glass p-6 rounded-2xl hover-lift">
-                        <div class="flex items-start gap-4 mb-4">
-                            <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl flex items-center justify-center shadow-lg transition-transform duration-300 hover-rotate">
-                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-xl mb-2 text-white">Zigbee</h3>
-                                <div class="flex flex-wrap gap-1 mb-3">
-                                    <span class="text-xs px-2 py-1 bg-gray-700/50 text-gray-300 rounded">مش نتورک</span>
-                                    <span class="text-xs px-2 py-1 bg-gray-700/50 text-gray-300 rounded">کم‌مصرف</span>
-                                    <span class="text-xs px-2 py-1 bg-gray-700/50 text-gray-300 rounded">خودترمیم</span>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="text-gray-300 leading-relaxed">
-                            پروتکل کم‌مصرف برای شبکه‌های مش با برد متوسط
-                        </p>
-                    </div>
-
-                    <div class="glass p-6 rounded-2xl hover-lift">
-                        <div class="flex items-start gap-4 mb-4">
-                            <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-lg transition-transform duration-300 hover-rotate">
-                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-xl mb-2 text-white">Z-Wave</h3>
-                                <div class="flex flex-wrap gap-1 mb-3">
-                                    <span class="text-xs px-2 py-1 bg-gray-700/50 text-gray-300 rounded">اختصاصی</span>
-                                    <span class="text-xs px-2 py-1 bg-gray-700/50 text-gray-300 rounded">پایدار</span>
-                                    <span class="text-xs px-2 py-1 bg-gray-700/50 text-gray-300 rounded">امن</span>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="text-gray-300 leading-relaxed">
-                            پروتکل اختصاصی خانه هوشمند با امنیت و پایداری بالا
-                        </p>
-                    </div>
-
-                    <div class="glass p-6 rounded-2xl hover-lift">
-                        <div class="flex items-start gap-4 mb-4">
-                            <div class="w-12 h-12 bg-gradient-to-br from-teal-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg transition-transform duration-300 hover-rotate">
-                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-xl mb-2 text-white">Bluetooth LE</h3>
-                                <div class="flex flex-wrap gap-1 mb-3">
-                                    <span class="text-xs px-2 py-1 bg-gray-700/50 text-gray-300 rounded">کم‌مصرف</span>
-                                    <span class="text-xs px-2 py-1 bg-gray-700/50 text-gray-300 rounded">نزدیک</span>
-                                    <span class="text-xs px-2 py-1 bg-gray-700/50 text-gray-300 rounded">آسان</span>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="text-gray-300 leading-relaxed">
-                            ارتباط کم‌مصرف برای دستگاه‌های نزدیک با باتری طولانی
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Bottom CTA -->
-                <div class="bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 rounded-2xl p-8 text-white relative overflow-hidden">
-                    <div class="absolute inset-0 bg-gradient-to-r from-emerald-500/20 via-teal-500/20 to-cyan-500/20 animate-pulse" style="animation-duration: 3s;"></div>
-                    <div class="relative z-10 text-center">
-                        <h3 class="text-2xl font-bold mb-4">پشتیبانی کامل از همه پروتکل‌ها</h3>
-                        <p class="text-emerald-100 mb-6 max-w-2xl mx-auto">
-                            تیم فنی پارسیان آماده پاسخگویی به سوالات شما در زمینه پیاده‌سازی و استفاده از این پروتکل‌ها می‌باشد
-                        </p>
-                        <div class="flex flex-wrap justify-center gap-4">
-                            <span class="px-4 py-2 bg-white/20 text-white border border-white/30 rounded-full text-sm">راهنمای نصب</span>
-                            <span class="px-4 py-2 bg-white/20 text-white border border-white/30 rounded-full text-sm">پشتیبانی فنی</span>
-                            <span class="px-4 py-2 bg-white/20 text-white border border-white/30 rounded-full text-sm">آپدیت رایگان</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="py-20 bg-gray-900/20">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-16">
-                    <div class="inline-flex items-center gap-2 bg-emerald-500/10 text-emerald-400 px-4 py-2 rounded-full mb-6">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
-                        </svg>
-                        <span class="text-sm">در تماس باشید</span>
-                    </div>
-                    
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">
-                        سوال دارید؟ بپرسید!
-                    </h2>
-                    <p class="text-lg text-gray-300 max-w-2xl mx-auto">
-                        تیم پشتیبانی پارسیان آماده پاسخگویی به سوالات شما در هر ساعت از شبانه‌روز می‌باشد
-                    </p>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                    <!-- Contact Form -->
-                    <div class="glass p-8 rounded-2xl animate-slideInRight">
-                        <h3 class="text-2xl font-bold mb-6 flex items-center gap-3 text-white">
-                            <div class="w-10 h-10 bg-gradient-to-br from-emerald-500 to-cyan-600 rounded-xl flex items-center justify-center">
-                                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                                </svg>
-                            </div>
-                            ارسال پیام
-                        </h3>
-                        
-                        <form id="contactForm" class="space-y-4">
-                            <div>
-                                <label class="block text-sm font-medium mb-2 text-gray-300">نام شما</label>
-                                <input
-                                    type="text"
-                                    id="name"
-                                    placeholder="نام خود را وارد کنید"
-                                    class="w-full p-3 border border-gray-700 rounded-lg bg-gray-900/50 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
-                                />
-                            </div>
-                            
-                            <div>
-                                <label class="block text-sm font-medium mb-2 text-gray-300">پیام شما</label>
-                                <textarea
-                                    id="message"
-                                    placeholder="سوال یا پیام خود را اینجا بنویسید..."
-                                    rows="6"
-                                    class="w-full p-3 border border-gray-700 rounded-lg bg-gray-900/50 text-white resize-none focus:outline-none focus:ring-2 focus:ring-emerald-500"
-                                    required
-                                ></textarea>
-                            </div>
-                            
-                            <button
-                                type="submit"
-                                class="w-full bg-gradient-to-r from-emerald-600 to-cyan-600 hover:from-emerald-700 hover:to-cyan-700 text-white py-3 rounded-lg font-medium hover-lift transition-all"
-                            >
-                                ارسال پیام
-                                <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
-                                </svg>
-                            </button>
-                        </form>
-                    </div>
-
-                    <!-- Contact Info -->
-                    <div class="space-y-6 animate-slideInLeft">
-                        <div class="glass p-6 rounded-2xl hover-lift">
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center">
-                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h3 class="font-bold text-lg mb-2 text-white">ایمیل پشتیبانی</h3>
-                                    <p class="text-gray-300 break-all">ticketsuupporting@gmail.com</p>
-                                    <p class="text-sm text-gray-400 mt-1">
-                                        پاسخ در کمتر از 24 ساعت
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="glass p-6 rounded-2xl hover-lift">
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-xl flex items-center justify-center">
-                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h3 class="font-bold text-lg mb-2 text-white">ساعات کاری</h3>
-                                    <p class="text-gray-300">همه روزه، 24 ساعته</p>
-                                    <p class="text-sm text-gray-400 mt-1">
-                                        پشتیبانی آنلاین و بدون وقفه
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="glass p-6 rounded-2xl hover-lift">
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center">
-                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h3 class="font-bold text-lg mb-2 text-white">خدمات ویژه</h3>
-                                    <p class="text-gray-300">مشاوره رایگان نصب</p>
-                                    <p class="text-sm text-gray-400 mt-1">
-                                        راهنمایی کامل برای استفاده
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="bg-gradient-to-br from-emerald-500 via-teal-600 to-cyan-600 rounded-2xl p-6 text-white relative overflow-hidden">
-                            <div class="absolute inset-0 bg-gradient-to-r from-emerald-500/20 via-teal-500/20 to-cyan-500/20 animate-pulse" style="animation-duration: 3s;"></div>
-                            <div class="relative z-10">
-                                <h3 class="font-bold text-lg mb-2">پشتیبانی فوری</h3>
-                                <p class="text-emerald-100 text-sm mb-4">
-                                    برای مسائل فوری و بحرانی، از فرم مقابل استفاده کنید و موضوع را "فوری" ذکر نمایید.
-                                </p>
-                                <div class="flex items-center gap-2 text-sm">
-                                    <div class="w-2 h-2 bg-green-300 rounded-full" style="animation: pulse 2s infinite;"></div>
-                                    <span>آنلاین و آماده پاسخگویی</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="relative bg-black text-white py-12 overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-br from-emerald-900/20 via-teal-900/10 to-cyan-900/20"></div>
-            <div class="relative z-10">
-                <div class="container mx-auto px-4">
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                        <!-- Brand -->
-                        <div class="md:col-span-2">
-                            <div class="flex items-center gap-3 mb-4">
-                                <div class="w-10 h-10 bg-gradient-to-br from-emerald-500 to-cyan-600 rounded-lg flex items-center justify-center">
-                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
-                                    </svg>
-                                </div>
-                                <span class="font-bold text-xl">پارسیان</span>
-                            </div>
-                            <p class="text-gray-300 mb-4 max-w-md">
-                                پیشرو در زمینه هوشمندسازی خانه و ساختمان. ما تکنولوژی روز دنیا را به خانه شما می‌آوریم.
-                            </p>
-                            <div class="flex gap-4">
-                                <a href="#" class="w-10 h-10 bg-gradient-to-br from-gray-800 to-gray-700 rounded-lg flex items-center justify-center hover:from-emerald-600 hover:to-cyan-600 transition-all duration-300 hover-scale">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                                    </svg>
-                                </a>
-                                <a href="mailto:ticketsuupporting@gmail.com" class="w-10 h-10 bg-gradient-to-br from-gray-800 to-gray-700 rounded-lg flex items-center justify-center hover:from-emerald-600 hover:to-cyan-600 transition-all duration-300 hover-scale">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                                    </svg>
-                                </a>
-                                <a href="#" class="w-10 h-10 bg-gradient-to-br from-gray-800 to-gray-700 rounded-lg flex items-center justify-center hover:from-emerald-600 hover:to-cyan-600 transition-all duration-300 hover-scale">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- Links -->
-                        <div>
-                            <h3 class="font-bold text-lg mb-4 text-white">محصولات</h3>
-                            <ul class="space-y-2 text-gray-300">
-                                <li><a href="#" class="hover:text-emerald-400 transition-colors">کنترل پنل</a></li>
-                                <li><a href="#mobile-app" class="hover:text-emerald-400 transition-colors">اپلیکیشن موبایل</a></li>
-                                <li><a href="#" class="hover:text-emerald-400 transition-colors">سنسورها</a></li>
-                                <li><a href="#" class="hover:text-emerald-400 transition-colors">کلیدهای هوشمند</a></li>
-                            </ul>
-                        </div>
-
-                        <!-- Support -->
-                        <div>
-                            <h3 class="font-bold text-lg mb-4 bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">پشتیبانی</h3>
-                            <ul class="space-y-2 text-gray-300">
-                                <li><a href="#" class="hover:text-emerald-400 transition-colors">راهنمای نصب</a></li>
-                                <li><a href="#" class="hover:text-emerald-400 transition-colors">سوالات متداول</a></li>
-                                <li><a href="#contact" class="hover:text-emerald-400 transition-colors">تماس با ما</a></li>
-                                <li><a href="#" class="hover:text-emerald-400 transition-colors">گارانتی</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-                        <p class="text-gray-400 text-sm flex items-center gap-2">
-                            © 2025 PJA Group. ساخته شده با
-                            <svg class="w-4 h-4 text-red-500 fill-red-500" style="animation: heartBeat 1s infinite;" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                            </svg>
-                            در ایران
-                        </p>
-                        <div class="flex gap-6 mt-4 md:mt-0">
-                            <a href="#" class="text-gray-400 hover:text-emerald-400 text-sm transition-colors">حریم خصوصی</a>
-                            <a href="#" class="text-gray-400 hover:text-emerald-400 text-sm transition-colors">شرایط استفاده</a>
-                            <a href="#" class="text-gray-400 hover:text-emerald-400 text-sm transition-colors">قوانین</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-    </div>
-
-    <!-- Floating Chat Button -->
-    <div id="chatBox" class="fixed bottom-6 left-6 z-50">
-        <!-- Chat Content -->
-        <div id="chatContent" class="hidden absolute bottom-20 left-0 w-72 glass rounded-2xl shadow-2xl p-6 border border-emerald-500/20 chat-box-content">
-            <button id="closeChatBtn" class="absolute top-3 right-3 text-gray-400 hover:text-white transition-colors">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                </svg>
-            </button>
-            
-            <div class="mb-4">
-                <div class="w-12 h-12 bg-gradient-to-br from-emerald-500 to-cyan-600 rounded-full flex items-center justify-center mb-3">
-                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
-                    </svg>
-                </div>
-                <h3 class="font-bold text-white mb-2">سوالی دارید؟</h3>
-                <p class="text-sm text-gray-300 leading-relaxed">
-                    تیم پشتیبانی پارسیان آماده پاسخگویی به سوالات شماست
-                </p>
-            </div>
-            
-            <button onclick="scrollToContact()" class="w-full bg-gradient-to-r from-emerald-600 to-cyan-600 text-white py-3 rounded-xl font-medium hover:from-emerald-700 hover:to-cyan-700 transition-all hover-scale">
-                اینجا بپرسید
-            </button>
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <div class="eyebrow"><span class="status-dot"></span> نسل تازه‌ای از زندگی هوشمند</div>
+          <h1>خانه‌ات را<br><span class="gradient-text">با سبک زندگی‌ات</span><br>هماهنگ کن.</h1>
+          <p class="hero-copy">با پارسیان، روشنایی، امنیت و تجهیزات خانه را از یک نقطه مدیریت کن؛ ساده، یکپارچه و متناسب با نیازهای روزمره‌ات.</p>
+          <div class="hero-buttons">
+            <a class="btn btn-primary" href="#contact">شروع تجربه هوشمند <span>←</span></a>
+            <a class="btn btn-ghost" href="#features"><span>▷</span> آشنایی با امکانات</a>
+          </div>
+          <div class="trust-row"><div class="avatars"><span class="avatar">P</span><span class="avatar">S</span><span class="avatar">+</span></div><span>کنترل یکپارچه، تجربه‌ای ساده‌تر در هر روز</span></div>
         </div>
+        <div class="hero-visual reveal">
+          <div class="orb"></div>
+          <div class="floating-chip chip-one"><span class="mini-icon">⌁</span><div><b>خانه آنلاین است</b><small>همه‌چیز تحت کنترل شما</small></div></div>
+          <div class="dashboard">
+            <div class="dash-head"><div><strong>خانه من</strong><small>داشبورد کنترل پارسیان</small></div><span class="online">● متصل</span></div>
+            <div class="home-scene"><div class="window"></div><div class="sofa"></div><div class="plant"></div><span class="scene-label">نمای خانه · حالت آرامش</span></div>
+            <div class="dash-section-title"><strong>دستگاه‌های من</strong><span id="deviceCount">۲ دستگاه روشن</span></div>
+            <div class="device-grid">
+              <div class="device"><span class="device-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 18h6m-5 3h4m-6-6a7 7 0 1 1 8 0c-.8.6-1 1.2-1 2H9c0-.8-.2-1.4-1-2Z"/></svg></span><div><strong>روشنایی سالن</strong><small class="device-state">روشن</small></div><button class="switch on" aria-label="تغییر روشنایی" aria-pressed="true"></button></div>
+              <div class="device"><span class="device-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v2m0 14v2M3 12h2m14 0h2M5.6 5.6 7 7m10 10 1.4 1.4M18.4 5.6 17 7M7 17l-1.4 1.4"/><circle cx="12" cy="12" r="4"/></svg></span><div><strong>نور محیطی</strong><small class="device-state">روشن</small></div><button class="switch on" aria-label="تغییر نور محیطی" aria-pressed="true"></button></div>
+              <div class="device"><span class="device-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span><div><strong>سیستم امنیتی</strong><small class="device-state">فعال</small></div><button class="switch on" aria-label="تغییر سیستم امنیتی" aria-pressed="true"></button></div>
+              <div class="device"><span class="device-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 15a4 4 0 0 0 4 4h9a5 5 0 1 0-.1-10A6 6 0 0 0 5 11a4 4 0 0 0-2 4Z"/></svg></span><div><strong>تهویه هوشمند</strong><small class="device-state">خاموش</small></div><button class="switch" aria-label="تغییر تهویه" aria-pressed="false"></button></div>
+            </div>
+          </div>
+          <div class="floating-chip chip-two"><span class="mini-icon">✦</span><div><b>سناریوی آرامش</b><small>با یک لمس فعال می‌شود</small></div></div>
+        </div>
+      </div>
+    </section>
 
-        <!-- Chat Button -->
-        <button id="chatBtn" class="w-16 h-16 bg-gradient-to-br from-emerald-600 to-cyan-600 rounded-full flex items-center justify-center shadow-lg hover:shadow-emerald-500/50 transition-all hover-scale relative">
-            <svg id="chatIcon" class="w-7 h-7 text-white transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
-            </svg>
-            <div id="chatPulse" class="absolute inset-0 bg-emerald-500 rounded-full -z-10" style="animation: pulse 2s infinite;"></div>
-        </button>
+    <section class="section section-alt" id="features">
+      <div class="container">
+        <div class="section-head reveal"><span class="section-kicker">امکانات پارسیان</span><h2>کنترل بیشتر، پیچیدگی کمتر</h2><p>امکانات کاربردی برای اینکه خانه با شما هماهنگ باشد؛ نه اینکه شما با خانه درگیر شوید.</p></div>
+        <div class="feature-grid">
+          <article class="feature-card reveal"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 10.5 12 3l9 7.5V21h-6v-6H9v6H3z"/></svg></div><h3>کنترل یکپارچه</h3><p>دستگاه‌های سازگار را از یک داشبورد ساده مدیریت کن و وضعیت آن‌ها را یکجا ببین.</p></article>
+          <article class="feature-card reveal"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M10 18h4"/></svg></div><h3>همراه همیشگی</h3><p>رابطی مناسب موبایل و دسکتاپ برای دسترسی راحت به کنترل‌های پرکاربرد.</p></article>
+          <article class="feature-card reveal"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-1.8 1.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5v.1h-2.6v-.1a1.7 1.7 0 0 0-1-1.5 1.7 1.7 0 0 0-1.9.3l-.1.1-1.8-1.8.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H6.4v-2.6h.1a1.7 1.7 0 0 0 1.5-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1 1.8-1.8.1.1a1.7 1.7 0 0 0 1.9.3 1.7 1.7 0 0 0 1-1.5v-.1H15v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1 1.8 1.8-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.5 1h.1V14h-.1a1.7 1.7 0 0 0-1.5 1Z"/></svg></div><h3>شخصی‌سازی</h3><p>تجربه کنترل را با نیازهای خانه و عادت‌های روزانه خودت هماهنگ کن.</p></article>
+          <article class="feature-card reveal"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></svg></div><h3>امنیت هوشمند</h3><p>وضعیت قابلیت‌های امنیتی سازگار را سریع‌تر بررسی و مدیریت کن.</p></article>
+          <article class="feature-card reveal"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6 5.6 18.4"/></svg></div><h3>سناریوهای روزمره</h3><p>برای زمان استراحت، خروج از خانه یا شروع روز، چند عمل را در یک سناریو جمع کن.</p></article>
+          <article class="feature-card reveal"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12a8 8 0 0 1 16 0"/><path d="M4 12v5a2 2 0 0 0 2 2h2v-6H6a2 2 0 0 0-2 2Zm16 0v5a2 2 0 0 1-2 2h-2v-6h2a2 2 0 0 1 2 2Z"/></svg></div><h3>پشتیبانی و راهنمایی</h3><p>برای انتخاب تجهیزات سازگار و شروع مسیر هوشمندسازی، درخواست مشاوره بفرست.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="scenes">
+      <div class="container split">
+        <div class="reveal">
+          <span class="section-kicker">سناریوهای هوشمند</span><h2>یک لمس؛ حال‌وهوای تازه</h2>
+          <p class="muted">به‌جای کنترل جداگانه هر وسیله، سناریویی متناسب با لحظه‌ات انتخاب کن. این بخش یک پیش‌نمایش تعاملی از تجربه پارسیان است.</p>
+          <div class="check-list">
+            <div class="check-item"><span class="check">✓</span><span><b>صبح بخیر</b><br><span class="muted">آماده‌سازی نور و دستگاه‌های دلخواه برای شروع روز.</span></span></div>
+            <div class="check-item"><span class="check">✓</span><span><b>خروج از خانه</b><br><span class="muted">مرور وضعیت روشنایی و فعال‌سازی تجهیزات انتخاب‌شده.</span></span></div>
+            <div class="check-item"><span class="check">✓</span><span><b>شب آرام</b><br><span class="muted">تنظیم فضای خانه برای استراحت با یک فرمان.</span></span></div>
+          </div>
+          <a class="btn btn-primary" href="#contact">برای خانه‌ام مشاوره می‌خواهم ←</a>
+        </div>
+        <div class="scene-panel reveal">
+          <div class="dash-section-title"><strong>سناریوهای پیشنهادی</strong><span>پیش‌نمایش تعاملی</span></div>
+          <div class="scene-card"><span class="scene-emoji">☀️</span><div><h3>صبح بخیر</h3><p>شروع روز با نور دلخواه</p></div><button class="btn btn-ghost scene-action" data-scene="صبح بخیر">اجرا</button></div>
+          <div class="scene-card"><span class="scene-emoji">🚪</span><div><h3>خروج از خانه</h3><p>مرور وضعیت دستگاه‌ها</p></div><button class="btn btn-ghost scene-action" data-scene="خروج از خانه">اجرا</button></div>
+          <div class="scene-card"><span class="scene-emoji">🌙</span><div><h3>شب آرام</h3><p>فضایی مناسب استراحت</p></div><button class="btn btn-ghost scene-action" data-scene="شب آرام">اجرا</button></div>
+          <p class="form-note">توجه: اجرای سناریوها در این صفحه نمایشی است و به تجهیزات واقعی متصل نیست.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="protocols">
+      <div class="container">
+        <div class="section-head reveal"><span class="section-kicker">سازگاری و توسعه</span><h2>یک مسیر هوشمند، انتخاب‌های بیشتر</h2><p>پیش از خرید، نوع ارتباط و سازگاری تجهیزات با کنترلر خانه بررسی می‌شود تا انتخاب مطمئن‌تری داشته باشی.</p></div>
+        <div class="protocol-grid">
+          <div class="protocol reveal"><div class="proto-mark">Wi‑Fi</div><h3>وای‌فای</h3><p>برای تجهیزات متصل به شبکه</p></div>
+          <div class="protocol reveal"><div class="proto-mark">BLE</div><h3>بلوتوث کم‌مصرف</h3><p>برای دستگاه‌های سازگار نزدیک</p></div>
+          <div class="protocol reveal"><div class="proto-mark">Zigbee</div><h3>زیگبی</h3><p>با نیاز به هاب و تجهیزات سازگار</p></div>
+          <div class="protocol reveal"><div class="proto-mark">LAN</div><h3>شبکه محلی</h3><p>برای ارتباط سیمی در صورت پشتیبانی</p></div>
+        </div>
+        <div class="stats reveal">
+          <div class="stat"><strong>۲۴/۷</strong><span>طراحی‌شده برای دسترسی آسان</span></div>
+          <div class="stat"><strong>۱</strong><span>داشبورد یکپارچه</span></div>
+          <div class="stat"><strong>∞</strong><span>امکان توسعه متناسب با نیاز</span></div>
+          <div class="stat"><strong>۱۰۰٪</strong><span>تمرکز بر تجربه کاربری</span></div>
+        </div>
+        <p class="form-note" style="text-align:center;margin-top:17px">پشتیبانی نهایی از هر پروتکل به مدل کنترلر، تجهیزات و نحوه پیاده‌سازی بستگی دارد.</p>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-head reveal"><span class="section-kicker">ارتباط با پارسیان</span><h2>از کجا شروع کنیم؟</h2><p>درباره فضای موردنظر و امکاناتی که نیاز داری بنویس تا مسیر مناسب‌تری برای هوشمندسازی بررسی شود.</p></div>
+        <div class="contact-grid">
+          <div class="contact-info reveal">
+            <h3>با هم برنامه‌ریزی کنیم</h3><p>چه بخواهی فقط روشنایی را هوشمند کنی و چه به‌دنبال یک سیستم یکپارچه باشی، می‌توانی درخواستت را ثبت کنی.</p>
+            <div class="contact-line"><span class="mini-icon">✉</span><div><b>ایمیل پشتیبانی</b><small>ticketsuupporting@gmail.com</small></div></div>
+            <div class="contact-line"><span class="mini-icon">⌂</span><div><b>مشاوره متناسب با پروژه</b><small>خانه، دفتر کار یا فضای تجاری</small></div></div>
+            <div class="contact-line"><span class="mini-icon">✓</span><div><b>قدم اول ساده است</b><small>نیازهایت را بنویس و درخواست را آماده کن</small></div></div>
+          </div>
+          <form id="contactForm" class="reveal">
+            <div class="form-row">
+              <div class="field"><label for="name">نام شما</label><input id="name" name="name" autocomplete="name" placeholder="مثلاً پارسا"></div>
+              <div class="field"><label for="email">ایمیل یا راه ارتباطی</label><input id="email" name="email" type="text" placeholder="راه ارتباطی دلخواه"></div>
+            </div>
+            <div class="field"><label for="project">نوع پروژه</label><input id="project" name="project" placeholder="مثلاً خانه، آپارتمان یا دفتر کار"></div>
+            <div class="field"><label for="message">چه امکاناتی نیاز دارید؟</label><textarea id="message" name="message" required placeholder="کمی درباره نیازها و امکانات موردنظرتان بنویسید..."></textarea></div>
+            <button class="btn btn-primary" type="submit">آماده‌سازی پیام <span>←</span></button>
+            <p class="form-note">با ثبت فرم، برنامه ایمیل دستگاه شما باز می‌شود؛ پیام بدون تأیید شما به‌صورت خودکار ارسال نمی‌شود.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="faq">
+      <div class="container">
+        <div class="section-head reveal"><span class="section-kicker">پاسخ پرسش‌ها</span><h2>سؤالات متداول</h2><p>پیش از شروع، چند نکته مهم درباره خانه هوشمند.</p></div>
+        <div class="faq-list reveal">
+          <div class="faq"><button type="button"><span>برای هوشمندسازی باید سیم‌کشی خانه عوض شود؟</span><span>＋</span></button><div class="faq-answer">بستگی به نوع تجهیزات و امکانات موردنیاز دارد. برخی راهکارها به تغییرات محدود نیاز دارند و بعضی پروژه‌ها به بررسی سیم‌کشی و زیرساخت نیازمندند.</div></div>
+          <div class="faq"><button type="button"><span>آیا همه دستگاه‌های هوشمند با هم سازگارند؟</span><span>＋</span></button><div class="faq-answer">خیر. پیش از خرید باید پروتکل ارتباطی، مدل کنترلر و سازگاری نرم‌افزاری هر دستگاه بررسی شود.</div></div>
+          <div class="faq"><button type="button"><span>آیا کنترل از راه دور همیشه فعال است؟</span><span>＋</span></button><div class="faq-answer">کنترل از راه دور به اینترنت، پیکربندی شبکه، کنترلر و امکانات واقعی سامانه بستگی دارد. قابلیت‌های آفلاین نیز باید جداگانه مشخص شوند.</div></div>
+          <div class="faq"><button type="button"><span>از چه بخشی بهتر است شروع کنم؟</span><span>＋</span></button><div class="faq-answer">معمولاً بهتر است نیازهای اصلی مانند روشنایی، امنیت یا تهویه را مشخص کنید و بعد بر اساس بودجه و سازگاری تجهیزات، مرحله‌به‌مرحله توسعه دهید.</div></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <a class="brand" href="#home"><span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10.5 12 3l9 7.5V21h-6v-6H9v6H3z"/></svg></span><span>پارسیان<span class="gradient-text">.</span></span></a>
+      <div class="footer-links"><a href="#features">امکانات</a><a href="#protocols">سازگاری</a><a href="#contact">تماس با ما</a><a href="#faq">سؤالات متداول</a></div>
+      <p class="copyright">© ۲۰۲۶ پارسیان · ساخته‌شده با دقت برای زندگی هوشمند</p>
     </div>
+  </footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    menuToggle.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(open));
+    });
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    }));
 
-    <script>
-        // Mouse follower
-        let mouseX = 50, mouseY = 50;
-        const mouseFollower = document.getElementById('mouseFollower');
-        
-        document.addEventListener('mousemove', (e) => {
-            mouseX = (e.clientX / window.innerWidth) * 100;
-            mouseY = (e.clientY / window.innerHeight) * 100;
-            updateMouseFollower();
+    const toast = document.getElementById('toast');
+    let toastTimer;
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 2800);
+    }
+
+    function updateDeviceCount() {
+      const switches = [...document.querySelectorAll('.switch')];
+      const active = switches.filter(s => s.classList.contains('on')).length;
+      document.getElementById('deviceCount').textContent = `${active} دستگاه روشن`;
+    }
+    document.querySelectorAll('.switch').forEach(sw => {
+      sw.addEventListener('click', () => {
+        const active = sw.classList.toggle('on');
+        sw.setAttribute('aria-pressed', String(active));
+        const state = sw.closest('.device').querySelector('.device-state');
+        state.textContent = active ? (sw.closest('.device').textContent.includes('امنیتی') ? 'فعال' : 'روشن') : 'خاموش';
+        updateDeviceCount();
+        showToast(active ? 'دستگاه در پیش‌نمایش روشن شد.' : 'دستگاه در پیش‌نمایش خاموش شد.');
+      });
+    });
+
+    document.querySelectorAll('.scene-action').forEach(button => {
+      button.addEventListener('click', () => {
+        const scene = button.dataset.scene;
+        const switches = [...document.querySelectorAll('.switch')];
+        switches.forEach((sw, i) => {
+          let on = false;
+          if (scene === 'صبح بخیر') on = i === 0 || i === 1;
+          if (scene === 'خروج از خانه') on = i === 2;
+          if (scene === 'شب آرام') on = i === 0 || i === 2;
+          sw.classList.toggle('on', on);
+          sw.setAttribute('aria-pressed', String(on));
+          const state = sw.closest('.device').querySelector('.device-state');
+          state.textContent = on ? (i === 2 ? 'فعال' : 'روشن') : 'خاموش';
         });
-        
-        function updateMouseFollower() {
-            const gradient = `radial-gradient(900px circle at ${mouseX}% ${mouseY}%, 
-                rgba(34, 197, 94, 0.25) 0%, 
-                rgba(59, 130, 246, 0.18) 25%, 
-                rgba(16, 185, 129, 0.12) 45%, 
-                rgba(6, 182, 212, 0.08) 65%, 
-                rgba(14, 165, 233, 0.04) 80%, 
-                transparent 100%)`;
-            
-            mouseFollower.style.background = gradient;
+        updateDeviceCount();
+        showToast(`سناریوی «${scene}» در پیش‌نمایش اجرا شد.`);
+      });
+    });
+
+    document.querySelectorAll('.faq button').forEach(button => {
+      button.addEventListener('click', () => {
+        const item = button.closest('.faq');
+        item.classList.toggle('open');
+        button.querySelector('span:last-child').textContent = item.classList.contains('open') ? '−' : '＋';
+      });
+    });
+
+    document.getElementById('contactForm').addEventListener('submit', event => {
+      event.preventDefault();
+      const name = document.getElementById('name').value.trim() || 'نامشخص';
+      const email = document.getElementById('email').value.trim() || 'ثبت نشده';
+      const project = document.getElementById('project').value.trim() || 'مشخص نشده';
+      const message = document.getElementById('message').value.trim();
+      if (!message) { showToast('لطفاً پیام خود را وارد کنید.'); return; }
+      const subject = 'درخواست مشاوره از سایت پارسیان';
+      const body = `نام: ${name}\nراه ارتباطی: ${email}\nنوع پروژه: ${project}\n\nشرح درخواست:\n${message}`;
+      window.location.href = `mailto:ticketsuupporting@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      showToast('پیش‌نویس ایمیل آماده شد؛ ارسال را در برنامه ایمیل تأیید کنید.');
+    });
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
         }
-        
-        // Mobile menu
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-        
-        // Close mobile menu when clicking a link
-        document.querySelectorAll('#mobileMenu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
-        });
-        
-        // Chat box
-        const chatBtn = document.getElementById('chatBtn');
-        const chatContent = document.getElementById('chatContent');
-        const closeChatBtn = document.getElementById('closeChatBtn');
-        const chatIcon = document.getElementById('chatIcon');
-        const chatPulse = document.getElementById('chatPulse');
-        let chatOpen = false;
-        
-        // Auto-open after 3 seconds
-        setTimeout(() => {
-            chatContent.classList.remove('hidden');
-            chatPulse.style.display = 'none';
-            chatOpen = true;
-            
-            // Auto-close after 5 seconds
-            setTimeout(() => {
-                chatContent.classList.add('hidden');
-                chatPulse.style.display = 'block';
-                chatOpen = false;
-            }, 5000);
-        }, 3000);
-        
-        chatBtn.addEventListener('click', () => {
-            chatOpen = !chatOpen;
-            if (chatOpen) {
-                chatContent.classList.remove('hidden');
-                chatIcon.style.transform = 'rotate(180deg)';
-                chatPulse.style.display = 'none';
-            } else {
-                chatContent.classList.add('hidden');
-                chatIcon.style.transform = 'rotate(0deg)';
-                chatPulse.style.display = 'block';
-            }
-        });
-        
-        closeChatBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            chatContent.classList.add('hidden');
-            chatPulse.style.display = 'block';
-            chatOpen = false;
-        });
-        
-        // Contact form
-        document.getElementById('contactForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            const name = document.getElementById('name').value;
-            const message = document.getElementById('message').value;
-            
-            if (message.trim()) {
-                const subject = 'پیام جدید از سایت پارسیان';
-                const body = `نام: ${name || 'نامشخص'}\n\nپیام:\n${message}`;
-                
-                window.location.href = `mailto:ticketsuupporting@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-                
-                // Reset form
-                document.getElementById('name').value = '';
-                document.getElementById('message').value = '';
-                
-                // Show success message (simple alert)
-                alert('پیام شما آماده ارسال است!');
-            }
-        });
-        
-        // Smooth scroll
-        function scrollToContact() {
-            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-            if (chatOpen) {
-                chatContent.classList.add('hidden');
-                chatPulse.style.display = 'block';
-                chatOpen = false;
-            }
-        }
-        
-        function scrollToMobileApp() {
-            document.getElementById('mobile-app').scrollIntoView({ behavior: 'smooth' });
-            if (chatOpen) {
-                chatContent.classList.add('hidden');
-                chatPulse.style.display = 'block';
-                chatOpen = false;
-            }
-        }
-        
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
-        
-        // Initialize
-        updateMouseFollower();
-    </script>
+      });
+    }, {threshold: .12});
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
